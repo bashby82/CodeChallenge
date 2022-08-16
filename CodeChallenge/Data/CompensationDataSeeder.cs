@@ -10,22 +10,22 @@ namespace CodeChallenge.Data
 {
     public class CompensationDataSeeder
     {
-        private EmployeeContext _employeeContext;
+        private CompensationContext _compensationContext;
         private const string COMPENSATION_SEED_DATA_FILE = "resources/CompensationSeedData.json";
 
-        public CompensationDataSeeder(EmployeeContext employeeContext)
+        public CompensationDataSeeder(CompensationContext compensationContext)
         {
-            _employeeContext = employeeContext;
+            _compensationContext = compensationContext;
         }
 
         public async Task Seed()
         {
-            if (!_employeeContext.Employees.Any())
+            if (!_compensationContext.Compensation.Any())
             {
                 List<Compensation> compensationList = LoadCompensationList();
-                _employeeContext.Compensation.AddRange(compensationList);
+                _compensationContext.Compensation.AddRange(compensationList);
 
-                await _employeeContext.SaveChangesAsync();
+                await _compensationContext.SaveChangesAsync();
             }
         }
 

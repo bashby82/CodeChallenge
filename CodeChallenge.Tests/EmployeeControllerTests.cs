@@ -153,7 +153,7 @@ namespace CodeCodeChallenge.Tests.Integration
         }
 
         [TestMethod]
-        public void GetCompensationByEmployeeId_TestPaul()
+        public void GetCompensationByEmployeeId_Test()
         {
             // Arrange
             var compensationId = "c7839309-3348-463c-a7e3-5de1c168cec3";
@@ -194,10 +194,10 @@ namespace CodeCodeChallenge.Tests.Integration
 
             // Assert
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
-            //Assert.IsNotNull(compensationResponse.CompensationId);
-            //Assert.AreEqual(compensation.Employee.FirstName, compensationResponse.Employee.FirstName);
-            //Assert.AreEqual(compensation.Salary, compensationResponse.Salary);
-            //Assert.AreEqual(compensation.EffectiveDate, compensationResponse.EffectiveDate);
+            Assert.IsNotNull(compensationResponse.CompensationId);
+            Assert.AreEqual(compensation.Employee.FirstName, compensationResponse.Employee.FirstName);
+            Assert.AreEqual(compensation.Salary, compensationResponse.Salary);
+            Assert.AreEqual(compensation.EffectiveDate, compensationResponse.EffectiveDate);
         }
     }
 }

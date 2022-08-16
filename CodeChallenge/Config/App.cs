@@ -21,6 +21,7 @@ namespace CodeChallenge.Config
             var builder = WebApplication.CreateBuilder(args);
 
             builder.UseEmployeeDB();
+            builder.UseCompensationDB();
             
             AddServices(builder.Services);
 
@@ -62,8 +63,8 @@ namespace CodeChallenge.Config
         private void SeedCompensationDB()
         {
             new CompensationDataSeeder(
-                new EmployeeContext(
-                    new DbContextOptionsBuilder<EmployeeContext>().UseInMemoryDatabase("CompensationDB").Options
+                new CompensationContext(
+                    new DbContextOptionsBuilder<CompensationContext>().UseInMemoryDatabase("CompensationDB").Options
             )).Seed().Wait();
         }
     }
