@@ -45,17 +45,12 @@ namespace CodeChallenge.Controllers
             return Ok(employee);
         }
 
-        [HttpGet("{id}", Name = "getEmployeeReports")]
-        public IActionResult GetEmployeeReports(String id)
+        [HttpGet("Reports/{id}",Name = "getEmployeeReports")]
+        public IActionResult GetEmployeeReports(string id)
         {
             _logger.LogDebug($"Received employee report get request for '{id}'");
 
-            var employee = _employeeService.GetEmployeeReports(id);
-
-            if (employee == null)
-                return NotFound();
-
-            return Ok(employee);
+            return Ok();
         }
 
         [HttpPut("{id}")]

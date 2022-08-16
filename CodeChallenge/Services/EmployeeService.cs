@@ -40,6 +40,11 @@ namespace CodeChallenge.Services
             return null;
         }
 
+        public ReportingStructure GetEmployeeReports(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Employee Replace(Employee originalEmployee, Employee newEmployee)
         {
             if(originalEmployee != null)
