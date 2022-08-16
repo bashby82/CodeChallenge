@@ -96,7 +96,13 @@ namespace CodeChallenge.Services
 
         public Compensation CreateCompensation(Compensation compensation)
         {
-            throw new NotImplementedException();
+            if (compensation != null)
+            {
+                _compensationRepository.Add(compensation);
+                _compensationRepository.SaveAsync().Wait();
+            }
+
+            return compensation;
         }
     }
 }

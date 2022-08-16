@@ -73,9 +73,9 @@ namespace CodeChallenge.Controllers
         [HttpPost("Compensation")]
         public IActionResult CreateCompensation([FromBody] Compensation compensation)
         {
-            _logger.LogDebug($"Received employee create request for '{compensation.Employee.EmployeeId}");
+            _logger.LogDebug($"Received employee create request for '{compensation.CompensationId }");
 
-            //_employeeService.Create(employee);
+            _employeeService.CreateCompensation(compensation);
 
             return CreatedAtRoute("getCompensationById", new { id = compensation.CompensationId }, compensation);
         }

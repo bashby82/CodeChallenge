@@ -159,7 +159,7 @@ namespace CodeCodeChallenge.Tests.Integration
             // Arrange
             var compensationId = "c7839309-3348-463c-a7e3-5de1c168cec3";
             var employeeId = "03aa1462-ffa9-4978-901b-7c001562cf6f";
-            var expectedSalary = 1000000M;
+            var expectedSalary = 100000M;
             var expectedEffectiveDate = new DateTime(2022, 1, 1);
 
             // Act
@@ -170,10 +170,8 @@ namespace CodeCodeChallenge.Tests.Integration
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.AreEqual(compensationId, compensation.CompensationId);
-            //Assert.AreEqual(expectedFirstName, compensation.Employee.FirstName);
-            //Assert.AreEqual(expectedLastName, compensation.Employee.LastName);
-            //Assert.AreEqual(expectedSalary, compensation.Salary);
-            //Assert.AreEqual(expectedEffectiveDate, compensation.EffectiveDate);
+            Assert.AreEqual(expectedSalary, compensation.Salary);
+            Assert.AreEqual(expectedEffectiveDate, compensation.EffectiveDate);
         }
 
         [TestMethod]
@@ -182,12 +180,8 @@ namespace CodeCodeChallenge.Tests.Integration
             // Arrange
             var compensation = new Compensation
             {
-                Employee = new Employee
-                {
-                    FirstName = "John",
-                    LastName = "Lennon"
-                },
-                Salary = 1000000,
+                Employee = new Employee{ EmployeeId = "b7839309-3348-463b-a7e3-5de1c168beb3" },
+                Salary = 5000000,
                 EffectiveDate = new DateTime(2022, 1, 1)
             };
 
