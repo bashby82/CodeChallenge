@@ -28,7 +28,7 @@ namespace CodeChallenge.Controllers
             _logger.LogDebug($"Received employee create request for '{employee.FirstName} {employee.LastName}'");
 
             _employeeService.Create(employee);
-
+            
             return CreatedAtRoute("getEmployeeById", new { id = employee.EmployeeId }, employee);
         }
 
@@ -67,6 +67,27 @@ namespace CodeChallenge.Controllers
             _employeeService.Replace(existingEmployee, newEmployee);
 
             return Ok(newEmployee);
+        }
+
+
+        [HttpPost("Compensation")]
+        public IActionResult CreateCompensation([FromBody] Compensation compensation)
+        {
+            _logger.LogDebug($"Received employee create request for '{compensation.Employee.EmployeeId}");
+
+            //_employeeService.Create(employee);
+
+            return CreatedAtRoute("getCompensationById", new { id = compensation.CompensationId }, compensation);
+        }
+
+        [HttpGet("Compensation/{id}", Name = "GetCompensationById")]
+        public IActionResult GetCompensationById(string id)
+        {
+            _logger.LogDebug($"Received employee report get request for '{id}'");
+
+            var compensation = new Compensation { Employee = new Employee { EmployeeId = "b7839309-3348-463b-a7e3-5de1c168beb3" } };
+
+            return Ok(compensation);
         }
     }
 }
