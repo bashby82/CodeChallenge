@@ -45,8 +45,8 @@ namespace CodeChallenge.Services
             var employee = GetById(id);
             return new ReportingStructure
             {
-                employee = employee,
-                numberOfReports = GetNumberOfReports(employee)
+                Employee = employee,
+                NumberOfReports = GetNumberOfReports(employee)
             };
         }
 
