@@ -45,6 +45,19 @@ namespace CodeChallenge.Controllers
             return Ok(employee);
         }
 
+        [HttpGet("{id}", Name = "getEmployeeReports")]
+        public IActionResult GetEmployeeReports(String id)
+        {
+            _logger.LogDebug($"Received employee report get request for '{id}'");
+
+            var employee = _employeeService.GetEmployeeReports(id);
+
+            if (employee == null)
+                return NotFound();
+
+            return Ok(employee);
+        }
+
         [HttpPut("{id}")]
         public IActionResult ReplaceEmployee(String id, [FromBody]Employee newEmployee)
         {

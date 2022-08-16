@@ -140,7 +140,7 @@ namespace CodeCodeChallenge.Tests.Integration
             var employeeId = "16a596ae-edd3-4847-99fe-c4518e82c86f";
 
             // Act
-            var getRequestTask = _httpClient.GetAsync($"api/employeeReports/{employeeId}");
+            var getRequestTask = _httpClient.GetAsync($"api/getEmployeeReports/{employeeId}");
             var response = getRequestTask.Result;
             var reportStructureTest = response.DeserializeContent<ReportingStructure>();
 
