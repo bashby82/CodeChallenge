@@ -52,7 +52,8 @@ namespace CodeChallenge.Services
 
         private int GetNumberOfReports(Employee employee)
         {
-            return 0;
+            int totalReports = employee.DirectReports.Count;
+            return totalReports;
         }
 
         public Employee Replace(Employee originalEmployee, Employee newEmployee)
