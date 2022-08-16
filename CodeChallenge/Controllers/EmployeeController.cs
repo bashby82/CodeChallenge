@@ -50,7 +50,9 @@ namespace CodeChallenge.Controllers
         {
             _logger.LogDebug($"Received employee report get request for '{id}'");
 
-            return Ok();
+            var employeeReportStructure = _employeeService.GetEmployeeReports(id);
+
+            return Ok(employeeReportStructure);
         }
 
         [HttpPut("{id}")]

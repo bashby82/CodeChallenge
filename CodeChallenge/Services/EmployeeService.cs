@@ -42,7 +42,17 @@ namespace CodeChallenge.Services
 
         public ReportingStructure GetEmployeeReports(string id)
         {
-            throw new NotImplementedException();
+            var employee = GetById(id);
+            return new ReportingStructure
+            {
+                employee = employee,
+                numberOfReports = GetNumberOfReports(employee)
+            };
+        }
+
+        private int GetNumberOfReports(Employee employee)
+        {
+            return 0;
         }
 
         public Employee Replace(Employee originalEmployee, Employee newEmployee)

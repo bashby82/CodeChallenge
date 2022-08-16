@@ -134,10 +134,12 @@ namespace CodeCodeChallenge.Tests.Integration
         }
 
         [TestMethod]
-        public void GetEmployeeReports_Test()
+        [DataRow("16a596ae-edd3-4847-99fe-c4518e82c86f", 4)]
+        [DataRow("03aa1462-ffa9-4978-901b-7c001562cf6f", 2)]
+        [DataRow("b7839309-3348-463b-a7e3-5de1c168beb3", 0)]
+        public void GetEmployeeReports_Test(string employeeId, int expectedResult)
         {
             // Arrange
-            var employeeId = "16a596ae-edd3-4847-99fe-c4518e82c86f";
 
             // Act
             var getRequestTask = _httpClient.GetAsync($"api/employee/Reports/{ employeeId }");
@@ -146,8 +148,7 @@ namespace CodeCodeChallenge.Tests.Integration
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            //Assert.AreEqual("John", reportStructureTest.employee.FirstName);
-            //Assert.AreEqual(4, reportStructureTest.numberOfReports);
+            Assert.AreEqual(expectedResult, reportStructureTest.numberOfReports);
         }
     }
 }
