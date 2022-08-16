@@ -85,7 +85,7 @@ namespace CodeChallenge.Controllers
         {
             _logger.LogDebug($"Received employee report get request for '{id}'");
 
-            var compensation = new Compensation { Employee = new Employee { EmployeeId = "b7839309-3348-463b-a7e3-5de1c168beb3" } };
+            var compensation = _employeeService.GetCompensationById(id);
 
             return Ok(compensation);
         }

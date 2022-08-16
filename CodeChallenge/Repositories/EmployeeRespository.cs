@@ -9,12 +9,12 @@ using CodeChallenge.Data;
 
 namespace CodeChallenge.Repositories
 {
-    public class EmployeeRespository : IEmployeeRepository
+    public class EmployeeRespository : IBaseRepository<Employee>
     {
         private readonly EmployeeContext _employeeContext;
-        private readonly ILogger<IEmployeeRepository> _logger;
+        private readonly ILogger<IBaseRepository<Employee>> _logger;
 
-        public EmployeeRespository(ILogger<IEmployeeRepository> logger, EmployeeContext employeeContext)
+        public EmployeeRespository(ILogger<IBaseRepository<Employee>> logger, EmployeeContext employeeContext)
         {
             _employeeContext = employeeContext;
             _logger = logger;

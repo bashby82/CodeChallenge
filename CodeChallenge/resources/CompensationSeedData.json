@@ -1,0 +1,10 @@
+[
+  {
+    "compensationId": "c7839309-3348-463c-a7e3-5de1c168cec3",
+    "employee": {
+      "employeeId": "03aa1462-ffa9-4978-901b-7c001562cf6f"
+    },
+    "salary": 100000,
+    "effectiveDate": "1/1/2022"
+  }
+]

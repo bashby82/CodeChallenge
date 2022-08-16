@@ -10,13 +10,17 @@ namespace CodeChallenge.Services
 {
     public class EmployeeService : IEmployeeService
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IBaseRepository<Employee> _employeeRepository;
+        private readonly IBaseRepository<Compensation> _compensationRepository;
         private readonly ILogger<EmployeeService> _logger;
 
-        public EmployeeService(ILogger<EmployeeService> logger, IEmployeeRepository employeeRepository)
+        public EmployeeService(ILogger<EmployeeService> logger, 
+                                IBaseRepository<Employee> employeeRepository, 
+                                IBaseRepository<Compensation> compensationRepository)
         {
             _employeeRepository = employeeRepository;
             _logger = logger;
+            _compensationRepository = compensationRepository;
         }
 
         public Employee Create(Employee employee)
@@ -38,6 +42,26 @@ namespace CodeChallenge.Services
             }
 
             return null;
+        }
+
+        public Employee Replace(Employee originalEmployee, Employee newEmployee)
+        {
+            if(originalEmployee != null)
+            {
+                _employeeRepository.Remove(originalEmployee);
+                if (newEmployee != null)
+                {
+                    // ensure the original has been removed, otherwise EF will complain another entity w/ same id already exists
+                    _employeeRepository.SaveAsync().Wait();
+
+                    _employeeRepository.Add(newEmployee);
+                    // overwrite the new id with previous employee id
+                    newEmployee.EmployeeId = originalEmployee.EmployeeId;
+                }
+                _employeeRepository.SaveAsync().Wait();
+            }
+
+            return newEmployee;
         }
 
         public ReportingStructure GetEmployeeReports(string id)
@@ -65,24 +89,14 @@ namespace CodeChallenge.Services
             return totalReports;
         }
 
-        public Employee Replace(Employee originalEmployee, Employee newEmployee)
+        public Compensation GetCompensationById(string id)
         {
-            if(originalEmployee != null)
-            {
-                _employeeRepository.Remove(originalEmployee);
-                if (newEmployee != null)
-                {
-                    // ensure the original has been removed, otherwise EF will complain another entity w/ same id already exists
-                    _employeeRepository.SaveAsync().Wait();
+            return string.IsNullOrEmpty(id) ? null : _compensationRepository.GetById(id);
+        }
 
-                    _employeeRepository.Add(newEmployee);
-                    // overwrite the new id with previous employee id
-                    newEmployee.EmployeeId = originalEmployee.EmployeeId;
-                }
-                _employeeRepository.SaveAsync().Wait();
-            }
-
-            return newEmployee;
+        public Compensation CreateCompensation(Compensation compensation)
+        {
+            throw new NotImplementedException();
         }
     }
 }
