@@ -146,6 +146,7 @@ namespace CodeCodeChallenge.Tests.Integration
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual("John", reportStructureTest.employee.FirstName);
             Assert.AreEqual(4, reportStructureTest.numberOfReports);
         }
     }
