@@ -52,7 +52,16 @@ namespace CodeChallenge.Services
 
         private int GetNumberOfReports(Employee employee)
         {
-            int totalReports = employee.DirectReports.Count;
+            int totalReports = 0;
+
+            if (employee.DirectReports == null)
+                return totalReports;
+
+            totalReports = employee.DirectReports.Count;
+
+            foreach (var report in employee.DirectReports)
+                totalReports += GetNumberOfReports(report);
+
             return totalReports;
         }
 
